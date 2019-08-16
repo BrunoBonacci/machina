@@ -8,8 +8,8 @@
 
   :scm {:name "git" :url "https://github.com/BrunoBonacci/machina.git"}
 
-  :dependencies [[org.clojure/clojure "1.10.0-RC4"]
-                 [com.brunobonacci/safely "0.5.0-alpha5"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [com.brunobonacci/safely "0.5.0-alpha7"]
                  [org.clojure/tools.logging "0.4.1"]]
 
   :global-vars {*warn-on-reflection* true}

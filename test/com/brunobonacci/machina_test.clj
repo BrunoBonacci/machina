@@ -240,7 +240,7 @@
              sm (error-transition (fs {:state :foo
                                        :machina/error-policies
                                        {:foo {:type        :retry
-                                              :max-retry   :forever
+                                              :max-retries   :forever
                                               :retry-delay [:random-exp-backoff :base 3000 :+/- 0.35 :max 25000]}}}))]
 
          (:state sm) => :machina/sleep

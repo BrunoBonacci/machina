@@ -72,16 +72,16 @@
 
 
 (defmethod error-policy :default
-  [{:keys [retry-delay max-retry] :as policy} retry-state]
+  [{:keys [retry-delay max-retries] :as policy} retry-state]
   (fn [sm]
     (halt-machina sm (str "Invalid error policy for state: " retry-state))))
 
 
 ;;
-;; TODO: handle max-retry != :forever
+;; TODO: handle max-retries != :forever
 ;;
 (defmethod error-policy :retry
-  [{:keys [retry-delay max-retry] :as policy} retry-state]
+  [{:keys [retry-delay max-retries] :as policy} retry-state]
   (fn [sm]
     (let [;; if a nap function already exists (from previous errors)
           ;; the use it, otherwise create a new one
@@ -137,7 +137,7 @@
         ;; the machine will transition to a halted state.
         :machina/default
         {:type         :retry
-         :max-retry    :forever
+         :max-retries    :forever
          :retry-delay [:random-exp-backoff :base 200 :+/- 0.35 :max 60000]}
 
         ;; additionally you can specify for every other state in you SM
@@ -145,7 +145,7 @@
         ;; for example the next policy retries every 5sec with a random
         ;; variant of +/- 35%.
         :foo   {:type        :retry
-                :max-retry   :forever
+                :max-retries   :forever
                 :retry-delay [:random 5000 :+/- 0.35]}
 
         ;; in this case, in case of error in the state `:bar` we go
@@ -268,7 +268,7 @@
    :machina/error-policies
    {:machina/default
     {:type           :retry
-     :max-retry      :forever
+     :max-retries      :forever
      :retry-delay    [:random-exp-backoff :base 200 :+/- 0.35 :max 60000]}
     }
 
