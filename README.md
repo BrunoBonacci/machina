@@ -14,7 +14,7 @@ In order to use the library add the dependency to your `project.clj`
 [com.brunobonacci/machina "0.1.0-SNAPSHOT"]
 
 ;; deps.edn format
-{:deps { com.brunobonacci/machina "0.1.0-SNAPSHOT" }}
+{:deps { com.brunobonacci/machina {:mvn/version "0.1.0-SNAPSHOT"} }}
 ```
 
 Current version: [![Clojars Project](https://img.shields.io/clojars/v/com.brunobonacci/machina.svg)](https://clojars.org/com.brunobonacci/machina)
